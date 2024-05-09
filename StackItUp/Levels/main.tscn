@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://caq78nui31v4m"]
+
+[ext_resource type="Script" path="res://Scripts/spawn_blocks.gd" id="1_vyhpr"]
+[ext_resource type="Script" path="res://Scripts/PlayerPlatform.gd" id="1_wutp1"]
+[ext_resource type="Script" path="res://Scripts/WinDetector.gd" id="2_os4d8"]
+[ext_resource type="Texture2D" uid="uid://cpvl6ago3yscj" path="res://Textures/SolarPanel.jpg" id="3_ae5cr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4brny"]
+size = Vector2(1152, 150)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_elvr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scvlq"]
+size = Vector2(20, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njim8"]
+
+[sub_resource type="SystemFont" id="SystemFont_etp03"]
+font_names = PackedStringArray("Arial Black")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_vyhpr")
+
+[node name="WinLine" type="Label" parent="."]
+offset_left = -19.0
+offset_top = 57.0
+offset_right = 7869.0
+offset_bottom = 194.0
+theme_override_font_sizes/font_size = 100
+text = "- - - - - - - - - - - - - - - - - - - - - "
+
+[node name="WinDetectorArea" type="Area2D" parent="." node_paths=PackedStringArray("win_message")]
+script = ExtResource("2_os4d8")
+win_message = NodePath("../WinText")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinDetectorArea"]
+position = Vector2(576, 65)
+shape = SubResource("RectangleShape2D_4brny")
+
+[node name="PlayerPlatform" type="RigidBody2D" parent="."]
+position = Vector2(579, 512)
+mass = 1e+10
+physics_material_override = SubResource("PhysicsMaterial_elvr4")
+gravity_scale = 1.66533e-16
+can_sleep = false
+freeze_mode = 1
+script = ExtResource("1_wutp1")
+speed = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPlatform"]
+scale = Vector2(10, 2)
+shape = SubResource("RectangleShape2D_scvlq")
+
+[node name="Sprite" type="Sprite2D" parent="PlayerPlatform"]
+scale = Vector2(0.392157, 0.392157)
+texture = ExtResource("3_ae5cr")
+region_enabled = true
+region_rect = Rect2(-0.257874, 205.072, 511.574, 102.044)
+
+[node name="LeftEdgeGuard" type="StaticBody2D" parent="."]
+position = Vector2(-10, 522)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftEdgeGuard"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_njim8")
+
+[node name="RightEdgeGuard" type="StaticBody2D" parent="."]
+position = Vector2(1162, 522)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightEdgeGuard"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_njim8")
+
+[node name="WinText" type="Label" parent="."]
+visible = false
+z_index = 1000
+offset_left = 140.0
+offset_top = 144.0
+offset_right = 1015.0
+offset_bottom = 392.0
+theme_override_fonts/font = SubResource("SystemFont_etp03")
+theme_override_font_sizes/font_size = 175
+text = "You Won!"
+horizontal_alignment = 1
+vertical_alignment = 1

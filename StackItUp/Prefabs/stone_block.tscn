@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0tmb1k4ia8m8"]
+
+[ext_resource type="Texture2D" uid="uid://bfwusyrnj3lpi" path="res://Textures/Rock.jpg" id="1_ty7s7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6n2v1"]
+friction = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jqxe"]
+size = Vector2(40, 104)
+
+[node name="Stone" type="RigidBody2D"]
+position = Vector2(704, 139)
+physics_material_override = SubResource("PhysicsMaterial_6n2v1")
+can_sleep = false
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ty7s7")
+region_enabled = true
+region_rect = Rect2(99.3972, 63.7765, 163.467, 415.386)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0jqxe")

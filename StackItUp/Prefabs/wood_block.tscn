@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsa6p5b6y0ccc"]
+
+[ext_resource type="Texture2D" uid="uid://cuoof7k4u2xbo" path="res://Textures/Wood.jpg" id="1_ojesw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p11cv"]
+friction = 1.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dfei"]
+size = Vector2(42, 42)
+
+[node name="Wood" type="RigidBody2D"]
+position = Vector2(522, 130)
+physics_material_override = SubResource("PhysicsMaterial_p11cv")
+can_sleep = false
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ojesw")
+region_enabled = true
+region_rect = Rect2(341.364, 172.453, 171.354, 168.847)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3dfei")

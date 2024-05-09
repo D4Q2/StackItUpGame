@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1w76f5gd5iws"]
+
+[ext_resource type="Texture2D" uid="uid://b62cxa8pj84wb" path="res://Textures/Tile.jpg" id="1_36okq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_18g8a"]
+friction = 0.15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyb6p"]
+size = Vector2(96, 64)
+
+[node name="Tile" type="RigidBody2D"]
+position = Vector2(603, 200)
+physics_material_override = SubResource("PhysicsMaterial_18g8a")
+can_sleep = false
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_36okq")
+region_enabled = true
+region_rect = Rect2(126.122, 126.681, 385.156, 259.196)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cyb6p")
